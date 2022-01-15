@@ -14,6 +14,7 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous">
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -53,8 +54,8 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Tambah Pegawai</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Daftar Pegawai</a>
+                                <a class="nav-link" href="tambah-pegawai.php">Tambah Pegawai</a>
+                                <a class="nav-link" href="daftar-pegawai.php">Daftar Pegawai</a>
                             </nav>
                         </div>
 

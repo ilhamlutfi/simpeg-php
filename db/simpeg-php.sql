@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2022 at 09:45 AM
+-- Generation Time: Jan 15, 2022 at 05:48 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -39,7 +39,38 @@ CREATE TABLE `bidang` (
 
 INSERT INTO `bidang` (`id_bidang`, `nama`, `tanggal`) VALUES
 (1, 'Teknologi Informasi', '2022-01-08 15:50:37'),
-(2, 'Humas 1', '2022-01-09 10:17:55');
+(2, 'Humas', '2022-01-09 10:17:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pegawai`
+--
+
+CREATE TABLE `pegawai` (
+  `id_pegawai` int(11) NOT NULL,
+  `id_bidang` int(11) NOT NULL,
+  `nip` int(11) NOT NULL,
+  `nama` varchar(150) NOT NULL,
+  `jk` varchar(15) NOT NULL,
+  `alamat` text NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `no_telepon` varchar(25) NOT NULL,
+  `golongan` varchar(20) NOT NULL,
+  `gaji` varchar(50) NOT NULL,
+  `status` varchar(15) NOT NULL,
+  `tmk` date NOT NULL COMMENT 'terhitung masa kerja (tmk)',
+  `foto` varchar(150) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `tanggal` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pegawai`
+--
+
+INSERT INTO `pegawai` (`id_pegawai`, `id_bidang`, `nip`, `nama`, `jk`, `alamat`, `email`, `no_telepon`, `golongan`, `gaji`, `status`, `tmk`, `foto`, `id_user`, `tanggal`) VALUES
+(1, 1, 1234567890, 'Ilham Lutfi', 'Laki-Laki', 'Kayuara, Sekayu', 'ilhamlutfi153@gmail.com', '082373641801', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', 'foto.jpg', NULL, '2022-01-15 11:10:43');
 
 --
 -- Indexes for dumped tables
@@ -52,6 +83,12 @@ ALTER TABLE `bidang`
   ADD PRIMARY KEY (`id_bidang`);
 
 --
+-- Indexes for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`id_pegawai`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -60,6 +97,12 @@ ALTER TABLE `bidang`
 --
 ALTER TABLE `bidang`
   MODIFY `id_bidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

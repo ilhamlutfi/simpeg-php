@@ -57,7 +57,7 @@ if (isset($_POST['tambah'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah"><i class=" fas fa-plus"></i> Tambah</button>
+                        <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-plus"></i> Tambah</button>
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
