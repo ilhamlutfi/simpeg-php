@@ -104,6 +104,44 @@ function tambah_pegawai($post)
     return mysqli_affected_rows($db);
 }
 
+// fungsi ubah pegawai
+function ubah_pegawai($post)
+{
+    global $db;
+
+    $id_pegawai = strip_tags($post['id_pegawai']);
+    $id_bidang  = strip_tags($post['id_bidang']);
+    $nip        = strip_tags($post['nip']);
+    $nama       = strip_tags($post['nama']);
+    $jk         = strip_tags($post['jk']);
+    $alamat     = strip_tags($post['alamat']);
+    $email      = strip_tags($post['email']);
+    $no_telepon = strip_tags($post['no_telepon']);
+    $golongan   = strip_tags($post['golongan']);
+    $gaji       = strip_tags($post['gaji']);
+    $status     = strip_tags($post['status']);
+    $tmk        = strip_tags($post['tmk']);
+    $id_user    = strip_tags($post['id_user']);
+    $fotoLama   = $post['fotoLama'];
+
+    // check foto di ubah atau tidak
+    if ($_FILES['foto']['error'] === 4) {
+        $foto = $fotoLama; // jika tidak pakai foto lama
+    } else {
+        $foto = upload_foto_pegawai(); // jika diubah pakai foto baru
+    }
+
+    // buat query tambah data
+    $query = "UPDATE pegawai SET id_bidang = '$id_bidang', nip = '$nip', nama = '$nama', jk = '$jk', alamat = '$alamat', email = '$email', no_telepon = '$no_telepon', golongan = '$golongan', gaji = '$gaji', status = '$status', tmk = '$tmk', foto = '$foto', id_user = '$id_user' WHERE id_pegawai = $id_pegawai";
+
+    // masukkan query ke database
+    mysqli_query($db, $query);
+
+    // check database yg terefek
+    return mysqli_affected_rows($db);
+}
+
+
 // fungsi upload foto pegawai
 function upload_foto_pegawai()
 {
@@ -120,7 +158,7 @@ function upload_foto_pegawai()
         // pesan gagal
         echo "<script>
                 alert('Format Foto Tidak VALID');
-                document.location.href = 'tambah-pegawai.php';
+                document.location.href = 'daftar-pegawai.php';
             </script>";
         die();
     }
@@ -129,7 +167,7 @@ function upload_foto_pegawai()
     if ($ukuranFile > 2048000) { // batas 2 mb
         echo "<script>
                 alert('Ukuran Gambar Terlalu Besar');
-                document.location.href = 'tambah-pegawai.php';
+                document.location.href = 'daftar-pegawai.php';
             </script>";
         die();
     }

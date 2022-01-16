@@ -23,7 +23,7 @@ if (isset($_POST['ubah'])) {
 	} else {
 		echo "<script>
 				alert('Data Pegawai Gagal Diubah');
-				document.location.href = 'tambah-pegawai.php';
+				document.location.href = 'ubah-pegawai.php';
 			 </script>";
 	}
 }
@@ -49,6 +49,7 @@ if (isset($_POST['ubah'])) {
 
                	<input type="hidden" name="id_pegawai" value="<?= $pegawai['id_pegawai']; ?>">
                	<input type="hidden" name="id_user" value="<?= $pegawai['id_user']; ?>">
+               	<input type="hidden" name="fotoLama" value="<?= $pegawai['foto']; ?>">
 
 	               	 <div class="row">
 	                	<div class="form-group col-sm-6">
@@ -75,9 +76,12 @@ if (isset($_POST['ubah'])) {
 	                	<div class="form-group col-sm-6">
 	                		<label for="id_bidang">Bidang</label>
 	                		<select name="id_bidang" id="id_bidang" class="form-control">
-	                			<option value="">-- pilih --</option>
 	                			<?php foreach ($bidang as $option) : ?>
-	                				<option value="<?= $option['id_bidang'] ?>"><?= $option['nama'] ?></option>
+	                				<?php if ($pegawai['id_bidang'] == $option['id_bidang']) : ?>
+	                					<option value="<?= $option['id_bidang'] ?>" selected><?= $option['nama'] ?></option>
+	                				<?php else : ?>
+	                					<option value="<?= $option['id_bidang'] ?>"><?= $option['nama'] ?></option>
+	                				<?php endif; ?>
 	                			<?php endforeach; ?>
 	                		</select>
 	                	</div>
@@ -86,29 +90,29 @@ if (isset($_POST['ubah'])) {
 	                <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="alamat">Alamat Lengkap</label>
-	                		<input type="text" name="alamat" id="alamat" class="form-control" required minlength="3">
+	                		<input type="text" name="alamat" id="alamat" class="form-control" required minlength="3" value="<?= $pegawai['alamat']; ?>">
 	                	</div>
 
 	                	<div class="form-group col-sm-6">
 	                		<label for="email">Email</label>
-	                		<input type="email" name="email" id="email" class="form-control" required minlength="8">
+	                		<input type="email" name="email" id="email" class="form-control" required minlength="8" value="<?= $pegawai['email']; ?>">
 	                	</div>
 	                </div>
 
 	                <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="no_telepon">No Telepon</label>
-	                		<input type="number" name="no_telepon" id="no_telepon" class="form-control" required minlength="8">
+	                		<input type="number" name="no_telepon" id="no_telepon" class="form-control" required minlength="8" value="<?= $pegawai['no_telepon']; ?>">
 	                	</div>
 
 	                	<div class="form-group col-sm-6">
 	                		<label for="golongan">Golongan</label>
 	                		<select name="golongan" id="golongan" class="form-control" required>
-	                			<option value="">pilih</option>
-	                			<option value="PNS">PNS</option>
-	                			<option value="CPNS">CPNS</option>
-	                			<option value="Kontrak">Kontrak</option>
-	                			<option value="PHL">PHL</option>
+	                			<?php $golongan = $pegawai['golongan']; ?>
+	                			<option value="PNS" <?= $golongan == 'PNS' ? 'selected' : null ?>>PNS</option>
+	                			<option value="CPNS" <?= $golongan == 'CPNS' ? 'selected' : null ?>>CPNS</option>
+	                			<option value="Kontrak" <?= $golongan == 'Kontrak' ? 'selected' : null ?>>Kontrak</option>
+	                			<option value="PHL" <?= $golongan == 'PHL' ? 'selected' : null ?>>PHL</option>
 	                		</select>
 	                	</div>
 	                </div>
@@ -116,15 +120,15 @@ if (isset($_POST['ubah'])) {
 	                <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="gaji">Gaji</label>
-	                		<input type="number" name="gaji" id="gaji" class="form-control" required minlength="6">
+	                		<input type="number" name="gaji" id="gaji" class="form-control" required minlength="6" value="<?= $pegawai['gaji']; ?>">
 	                	</div>
 
 	                	<div class="form-group col-sm-6">
 	                		<label for="status">Status</label>
 	                		<select name="status" id="status" class="form-control" required>
-	                			<option value="">pilih</option>
-	                			<option value="Menikah">Menikah</option>
-	                			<option value="Belum Menikah">Belum Menikah</option>
+	                			<?php $status = $pegawai['status']; ?>
+	                			<option value="Menikah" <?= $status == 'Menikah' ? 'selected' : null?>>Menikah</option>
+	                			<option value="Belum Menikah" <?= $status == 'Belum Menikah' ? 'selected' : null?>>Belum Menikah</option>
 	                		</select>
 	                	</div>
 	                </div>
@@ -132,23 +136,23 @@ if (isset($_POST['ubah'])) {
 	                <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="tmk">Terhitung Masa Kerja</label>
-	                		<input type="date" name="tmk" id="tmk" class="form-control" required minlength="6">
+	                		<input type="date" name="tmk" id="tmk" class="form-control" required minlength="6" value="<?= $pegawai['tmk']; ?>">
 	                	</div>
 
 	                	<div class="form-group col-sm-6">
 	                		<label for="foto">Foto <small>(Max 2 MB</small></label><br>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="foto" name="foto" onchange="previewImg()" required>
+                                <input type="file" class="custom-file-input" id="foto" name="foto" onchange="previewImg()">
                                 <label class="custom-file-label" for="foto">Pilih foto...</label>
                             </div>
                             <div class="mt-1">
-                                <img src="" alt="" class="img-thumbnail img-preview" width="100px">
+                                <img src="assets/img/<?= $pegawai['foto']; ?>" alt="" class="img-thumbnail img-preview" width="100px">
                             </div>
 	                	</div>
 	                </div>
 
 					<div class="float-right">
-	                	<button type="submit" name="tambah" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
+	                	<button type="submit" name="ubah" class="btn btn-primary"><i class="fas fa-edit"></i> Ubah</button>
 					</div>
 
                </form>
