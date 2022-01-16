@@ -42,19 +42,24 @@ $pegawai = query("SELECT * FROM pegawai ORDER BY id_pegawai DESC"); // query unt
                                 <?php $no = 1; ?>
                                 <?php foreach ($pegawai as $data) : ?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
+                                        <td width="1%"><?= $no++; ?></td>
                                         <td><?= $data['nip']; ?></td>
                                         <td><?= $data['nama']; ?></td>
                                         <td><?= $data['golongan']; ?></td>
                                         <td><?= date('d/m/Y', strtotime($data['tmk'])); ?></td>
                                         <td><?= $data['no_telepon']; ?></td>
-                                        <td><?= $data['foto']; ?></td>
+                                        <td width="20%">
+                                           <a href="assets/img/<?= $data['foto']; ?>">
+                                                <img src="assets/img/<?= $data['foto']; ?>" alt="foto" width="100%">
+                                           </a>
+                                        </td>
+
                                         <td width="15%" class="text-center">
                                             <a href="" class="btn btn-secondary btn-sm mb-1" title="Detail"><i class="fas fa-eye"></i></a>
                                             
                                             <button class="btn btn-success btn-sm mb-1" title="Ubah"><i class="fas fa-edit"></i></button>
                                             
-                                            <a href="" class="btn btn-danger btn-sm mb-1" title="Hapus"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="" class="btn btn-danger btn-sm mb-1" title="Hapus" data-toggle="modal" data-target="#hapusModal<?= $data['id_pegawai']; ?>"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -66,32 +71,29 @@ $pegawai = query("SELECT * FROM pegawai ORDER BY id_pegawai DESC"); // query unt
         </div>
     </main>
 
-    <!-- Modal Tambah -->
-    <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal Hapus -->
+    <?php foreach ($pegawai as $data) : ?>
+        <div class="modal fade" id="hapusModal<?= $data['id_pegawai']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Tambah Bidang</h5>
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt"></i> Hapus Pegawai</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="nama">Nama Bidang</label>
-                            <input type="text" name="nama" id="nama" class="form-control" required minlength="3">
-                        </div>
+                    <p>Yakin Data Pegawai : <?= $data['nama'] ?> Akan Dihapus..?</p>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-mb" data-dismiss="modal">Kembali</button>
-                            <button type="submit" name="tambah" class="btn btn-primary btn-mb">Submit</button>
-                        </div>
-                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Batal</button>
+                        <a href="hapus-pegawai.php?id_pegawai=<?= $data['id_pegawai']; ?>" class="btn btn-danger btn-sm">Hapus</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <?php endforeach; ?>
 
 
     <?php include "layout/footer.php"; ?>

@@ -144,3 +144,15 @@ function upload_foto_pegawai()
     return $namaFilebaru;
 }
 
+// fungsi hapus pegawai
+function hapus_pegawai($id_pegawai)
+{
+    global $db;
+
+    $query = "DELETE FROM pegawai WHERE id_pegawai = $id_pegawai";
+
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
+
