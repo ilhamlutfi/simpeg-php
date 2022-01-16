@@ -7,6 +7,21 @@ include 'layout/header.php';
 // tampil data bidang sebagai option
 $bidang = query("SELECT * FROM bidang ORDER BY id_bidang DESC"); 
 
+// ketika tombol tambah ditekan, jalankan script dibawah ini
+if (isset($_POST['tambah'])) {
+	if (tambah_pegawai($_POST) > 0) {
+		echo "<script>
+				alert('Data Pegawai Berhasil Ditambahkan');
+				document.location.href = 'daftar-pegawai.php';
+			 </script>";
+	} else {
+		echo "<script>
+				alert('Data Pegawai Gagal Ditambahkan');
+				document.location.href = 'tambah-pegawai.php';
+			 </script>";
+	}
+}
+
 ?>
 
 <div id="layoutSidenav_content">
@@ -25,6 +40,9 @@ $bidang = query("SELECT * FROM bidang ORDER BY id_bidang DESC");
             </div>
             <div class="card-body">
                <form action="" method="POST" enctype="multipart/form-data">
+
+               	<input type="hidden" name="id_user" value="">
+
 	               	 <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="nip">NIP</label>
@@ -40,7 +58,7 @@ $bidang = query("SELECT * FROM bidang ORDER BY id_bidang DESC");
 	                <div class="row">
 	                	<div class="form-group col-sm-6">
 	                		<label for="jk">Jenis Kelamin</label>
-	                		<select name="jk" id="jk" class="form-control">
+	                		<select name="jk" id="jk" class="form-control" required>
 	                			<option value="">-- pilih --</option>
 	                			<option value="Laki-Laki">Laki-Laki</option>
 	                			<option value="Perempuan">Perempuan</option>
@@ -123,7 +141,7 @@ $bidang = query("SELECT * FROM bidang ORDER BY id_bidang DESC");
 	                </div>
 
 					<div class="float-right">
-	                	<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
+	                	<button type="submit" name="tambah" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah</button>
 					</div>
 
                </form>
