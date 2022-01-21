@@ -62,7 +62,7 @@ if (isset($_POST['tambah'])) {
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
+                                    <th>Nama Bidang</th>
                                     <th>Tanggal</th>
                                     <th>Fungsi</th>
                                 </tr>
@@ -73,7 +73,7 @@ if (isset($_POST['tambah'])) {
                                 <?php foreach ($bidang as $data) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
-                                        <td><?= $data['nama']; ?></td>
+                                        <td><?= $data['nama_bidang']; ?></td>
                                         <td><?= date('d/m/Y H:i:s', strtotime($data['tanggal'])); ?></td>
                                         <td width="15%" class="text-center">
                                             <button class="btn btn-success btn-sm mb-1" data-toggle="modal" data-target="#modalUbah<?= $data['id_bidang']; ?>"><i class="fas fa-edit"></i>
@@ -104,8 +104,8 @@ if (isset($_POST['tambah'])) {
                 <div class="modal-body">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="nama">Nama Bidang</label>
-                            <input type="text" name="nama" id="nama" class="form-control" required minlength="3">
+                            <label for="nama_bidang">Nama Bidang</label>
+                            <input type="text" name="nama_bidang" id="nama_bidang" class="form-control" required minlength="3">
                         </div>
 
                         <div class="modal-footer">
@@ -133,8 +133,8 @@ if (isset($_POST['tambah'])) {
                         <form action="" method="post">
                             <input type="hidden" name="id_bidang" value="<?= $data['id_bidang']; ?>">
                             <div class="form-group">
-                                <label for="nama">Nama Bidang</label>
-                                <input type="text" name="nama" id="nama" class="form-control" required minlength="3" value="<?= $data['nama']; ?>">
+                                <label for="nama_bidang">Nama Bidang</label>
+                                <input type="text" name="nama_bidang" id="nama_bidang" class="form-control" required minlength="3" value="<?= $data['nama_bidang']; ?>">
                             </div>
 
                             <div class="modal-footer">

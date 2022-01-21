@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2022 at 05:48 AM
+-- Generation Time: Jan 21, 2022 at 02:21 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bidang` (
   `id_bidang` int(11) NOT NULL,
-  `nama` varchar(25) NOT NULL,
+  `nama_bidang` varchar(25) NOT NULL,
   `tanggal` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -37,7 +37,7 @@ CREATE TABLE `bidang` (
 -- Dumping data for table `bidang`
 --
 
-INSERT INTO `bidang` (`id_bidang`, `nama`, `tanggal`) VALUES
+INSERT INTO `bidang` (`id_bidang`, `nama_bidang`, `tanggal`) VALUES
 (1, 'Teknologi Informasi', '2022-01-08 15:50:37'),
 (2, 'Humas', '2022-01-09 10:17:55');
 
@@ -70,7 +70,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_bidang`, `nip`, `nama`, `jk`, `alamat`, `email`, `no_telepon`, `golongan`, `gaji`, `status`, `tmk`, `foto`, `id_user`, `tanggal`) VALUES
-(1, 1, 1234567890, 'Ilham Lutfi', 'Laki-Laki', 'Kayuara, Sekayu', 'ilhamlutfi153@gmail.com', '082373641801', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', 'foto.jpg', NULL, '2022-01-15 11:10:43');
+(4, 2, 123123213, 'Lutfi Ilham', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0812312312312', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', '61e3e307c7d87.png', 0, '2022-01-16 11:02:13');
 
 --
 -- Indexes for dumped tables
@@ -102,7 +102,7 @@ ALTER TABLE `bidang`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -78,9 +78,9 @@ if (isset($_POST['ubah'])) {
 	                		<select name="id_bidang" id="id_bidang" class="form-control">
 	                			<?php foreach ($bidang as $option) : ?>
 	                				<?php if ($pegawai['id_bidang'] == $option['id_bidang']) : ?>
-	                					<option value="<?= $option['id_bidang'] ?>" selected><?= $option['nama'] ?></option>
+	                					<option value="<?= $option['id_bidang'] ?>" selected><?= $option['nama_bidang'] ?></option>
 	                				<?php else : ?>
-	                					<option value="<?= $option['id_bidang'] ?>"><?= $option['nama'] ?></option>
+	                					<option value="<?= $option['id_bidang'] ?>"><?= $option['nama_bidang'] ?></option>
 	                				<?php endif; ?>
 	                			<?php endforeach; ?>
 	                		</select>

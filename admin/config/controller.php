@@ -22,10 +22,10 @@ function tambah_bidang($post)
     global $db;
 
     // ambil input user
-    $nama = htmlspecialchars($post['nama']);
+    $nama_bidang = htmlspecialchars($post['nama_bidang']);
 
     // query tambah data
-    $query = "INSERT INTO bidang VALUES(null, '$nama', CURRENT_TIMESTAMP)";
+    $query = "INSERT INTO bidang VALUES(null, '$nama_bidang', CURRENT_TIMESTAMP)";
 
     // simpan query ke database
     mysqli_query($db, $query);
@@ -53,11 +53,11 @@ function ubah_bidang($post)
     global $db;
 
     // ambil input user
-    $id_bidang  = $post['id_bidang'];
-    $nama       = htmlspecialchars($post['nama']);
+    $id_bidang      = $post['id_bidang'];
+    $nama_bidang    = htmlspecialchars($post['nama_bidang']);
 
     // query ubah data
-    $query = "UPDATE bidang SET nama = '$nama' WHERE id_bidang = $id_bidang";
+    $query = "UPDATE bidang SET nama = '$nama_bidang' WHERE id_bidang = $id_bidang";
 
     // simpan query ke database
     mysqli_query($db, $query);

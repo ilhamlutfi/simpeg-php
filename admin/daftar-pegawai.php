@@ -55,7 +55,7 @@ $pegawai = query("SELECT * FROM pegawai ORDER BY id_pegawai DESC"); // query unt
                                         </td>
 
                                         <td width="15%" class="text-center">
-                                            <a href="" class="btn btn-secondary btn-sm mb-1" title="Detail"><i class="fas fa-eye"></i></a>
+                                            <a href="detail-pegawai.php?id_pegawai=<?= $data['id_pegawai']; ?>" class="btn btn-secondary btn-sm mb-1" title="Detail"><i class="fas fa-eye"></i></a>
                                             
                                             <a href="ubah-pegawai.php?id_pegawai=<?= $data['id_pegawai']; ?>" class="btn btn-success btn-sm mb-1" title="Ubah"><i class="fas fa-edit"></i></a>
                                             

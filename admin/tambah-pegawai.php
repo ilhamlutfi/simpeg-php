@@ -70,7 +70,7 @@ if (isset($_POST['tambah'])) {
 	                		<select name="id_bidang" id="id_bidang" class="form-control">
 	                			<option value="">-- pilih --</option>
 	                			<?php foreach ($bidang as $option) : ?>
-	                				<option value="<?= $option['id_bidang'] ?>"><?= $option['nama'] ?></option>
+	                				<option value="<?= $option['id_bidang'] ?>"><?= $option['nama_bidang'] ?></option>
 	                			<?php endforeach; ?>
 	                		</select>
 	                	</div>
