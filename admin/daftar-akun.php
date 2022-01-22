@@ -188,10 +188,10 @@ if (isset($_POST['ubah'])) {
 
                         <div class="form-group">
                         	<label for="password">Password <small>(Masukkan Password Lama/Baru)</small></label>
-                        	<input type="password" name="password" id="password2" class="form-control" minlength="6" required>
+                        	<input type="password" name="password" id="password<?= $data['id_akun']; ?>" class="form-control" minlength="6" required>
                         </div>
 
-                        <input type="checkbox" class="form-checkbox show-ubah"> <small>Lihat Password</small>
+                        <input type="checkbox" class="form-checkbox show-ubah<?= $data['id_akun']; ?>"> <small>Lihat Password</small>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-mb" data-dismiss="modal">Kembali</button>
@@ -216,16 +216,18 @@ if (isset($_POST['ubah'])) {
   });
 </script>
 
+<?php foreach ($akun as $data) : ?>
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.show-ubah').click(function() {
+    $('.show-ubah<?= $data['id_akun']; ?>').click(function() {
       if ($(this).is(':checked')) {
-        $('#password2').attr('type', 'text');
+        $('#password<?= $data['id_akun']; ?>').attr('type', 'text');
       } else {
-        $('#password2').attr('type', 'password');
+        $('#password<?= $data['id_akun']; ?>').attr('type', 'password');
       }
     });
   });
 </script>
+<?php endforeach; ?>
 
 <?php include 'layout/footer.php'; ?>
