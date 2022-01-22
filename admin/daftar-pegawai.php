@@ -23,6 +23,8 @@ $pegawai = query("SELECT * FROM pegawai ORDER BY id_pegawai DESC"); // query unt
                     Tabel Daftar Pegawai
                 </div>
                 <div class="card-body">
+                    <a href="download-laporan.php" class="btn btn-primary mb-2"><i class="fas fa-download"></i> Download Laporan</a>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
