@@ -194,3 +194,66 @@ function hapus_pegawai($id_pegawai)
     return mysqli_affected_rows($db);
 }
 
+// ---------------------------------------------------------------------------
+
+// fungsi tambah akun
+function tambah_akun($post) 
+{
+    // panggil koneksi ke database
+    global $db;
+
+    // ambil input user
+    $nama       = htmlspecialchars($post['nama']);
+    $no_telepon = htmlspecialchars($post['no_telepon']);
+    $role       = htmlspecialchars($post['role']);
+
+    // enkripsi password ke database
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // query tambah data
+    $query = "INSERT INTO akun VALUES(null, '$nama', '$no_telepon', '$password', '$role')";
+
+    // simpan query ke database
+    mysqli_query($db, $query);
+
+    // check kolom yang bertambah
+    return mysqli_affected_rows($db);
+}
+
+// fungsi hapus akun
+function hapus_akun($id_akun)
+{
+    global $db;
+
+    $query = "DELETE FROM akun WHERE id_akun = $id_akun";
+
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
+
+// fungsi ubah akun
+function ubah_akun($post) 
+{
+    // panggil koneksi ke database
+    global $db;
+
+    // ambil input user
+    $nama       = htmlspecialchars($post['nama']);
+    $no_telepon = htmlspecialchars($post['no_telepon']);
+    $role       = htmlspecialchars($post['role']);
+    $id_akun    = $post['id_akun'];
+
+    // enkripsi password ke database
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // query ubah data
+    $query = "UPDATE akun SET nama = '$nama', no_telepon = '$no_telepon', role = '$role', password = '$password' WHERE id_akun = $id_akun";
+
+    // simpan query ke database
+    mysqli_query($db, $query);
+
+    // check kolom yang bertambah
+    return mysqli_affected_rows($db);
+}
+

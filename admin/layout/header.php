@@ -63,6 +63,16 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
                             Bidang
                         </a>
+
+                        <a class="nav-link" href="daftar-akun.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+                            Akun
+                        </a>
+
+                        <a class="nav-link" href="logout.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Logout
+                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

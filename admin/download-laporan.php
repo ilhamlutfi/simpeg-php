@@ -46,6 +46,18 @@ foreach ($query as $data) {
 	$m++;
 }
 
+// styling
+$style = [
+    'borders' => [
+        'allBorders' => [
+            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+        ],
+    ],
+];
+
+$baris = $m - 1;
+$sheet->getStyle('A4:L' . $baris)->applyFromArray($style);
+
 $writer = new Xlsx($spreadsheet);
 $fileName = 'Laporan.xlsx';
 $writer->save($fileName);
