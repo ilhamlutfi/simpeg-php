@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2022 at 02:21 PM
+-- Generation Time: Jan 22, 2022 at 11:22 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `simpeg-php`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akun`
+--
+
+CREATE TABLE `akun` (
+  `id_akun` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `no_telepon` varchar(20) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `role` varchar(1) NOT NULL COMMENT 'hak akses akun'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`id_akun`, `nama`, `no_telepon`, `password`, `role`) VALUES
+(1, 'Gunawan Saputra', '8023736418010', '$2y$10$v2W7Vigh9REV61ecitVkXOaPQuvqB8k6wgyyfB/ncIIioobVEW8S.', '2');
 
 -- --------------------------------------------------------
 
@@ -70,11 +91,18 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_bidang`, `nip`, `nama`, `jk`, `alamat`, `email`, `no_telepon`, `golongan`, `gaji`, `status`, `tmk`, `foto`, `id_user`, `tanggal`) VALUES
-(4, 2, 123123213, 'Lutfi Ilham', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0812312312312', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', '61e3e307c7d87.png', 0, '2022-01-16 11:02:13');
+(4, 2, 123123213, 'Lutfi Ilham', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0812312312312', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', '61e3e307c7d87.png', 0, '2022-01-16 11:02:13'),
+(6, 1, 1231231, 'Lutfi', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0823645464', 'CPNS', '650000', 'Belum Menikah', '2021-12-07', '61eb9e0300053.jpg', 0, '2022-01-22 13:02:43');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `akun`
+--
+ALTER TABLE `akun`
+  ADD PRIMARY KEY (`id_akun`);
 
 --
 -- Indexes for table `bidang`
@@ -93,6 +121,12 @@ ALTER TABLE `pegawai`
 --
 
 --
+-- AUTO_INCREMENT for table `akun`
+--
+ALTER TABLE `akun`
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `bidang`
 --
 ALTER TABLE `bidang`
@@ -102,7 +136,7 @@ ALTER TABLE `bidang`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
