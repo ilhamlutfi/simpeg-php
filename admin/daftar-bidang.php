@@ -6,6 +6,22 @@ include "layout/header.php";
 
 $bidang = query("SELECT * FROM bidang ORDER BY id_bidang DESC"); // query untuk menampilkan data dari tabel bidang
 
+// ketika tombol tambah ditekan jalankan fungsi dibawah ini
+    if (isset($_POST['tambah'])) {
+        if (tambah_bidang($_POST) > 0) {
+            // pesan berhasil
+            echo "<script>
+                alert('Data Bidang Berhasil Ditambahkan'); 
+                document.location.href = 'daftar-bidang.php';
+             </script>";
+        } else {
+            // pesan gagal
+            echo "<script>
+                alert('Data Bidang Gagal Ditambahkan');
+                document.location.href = 'daftar-bidang.php';
+             </script>";
+        }
+    }
 
 
     // ketika tombol ubah ditekan jalankan fungsi dibawah ini

@@ -60,7 +60,7 @@ ON pegawai.id_bidang = bidang.id_bidang WHERE id_pegawai = '$id_pegawai'")[0];
                			<td>Golongan</td>
                			<td>: <?= $pegawai['golongan']; ?></td>
                			<td>Gaji</td>
-               			<td>: <?= number_format($pegawai['gaji'], 0, '.', '.'); ?></td>
+               			<td>: Rp. <?= number_format($pegawai['gaji'], 0, '.', '.'); ?></td>
                		</tr>
                		<tr>
                			<td>Status</td>
