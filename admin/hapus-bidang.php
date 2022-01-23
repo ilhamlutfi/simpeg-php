@@ -1,5 +1,16 @@
 <?php
 
+session_start();
+
+// check login jika gagal lempar kembali ke login.php
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Anda harus login terlebih dahulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit;
+}
+
 require "config/core.php"; // panggil file config/core.php
 
 $id_bidang = (int)$_GET['id_bidang'];

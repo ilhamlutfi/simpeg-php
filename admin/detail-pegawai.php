@@ -1,4 +1,15 @@
-<?php  
+<?php
+
+session_start();
+
+// check login jika gagal lempar kembali ke login.php
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Anda harus login terlebih dahulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit;
+}  
 
 $judul = "Detail Pegawai";
 

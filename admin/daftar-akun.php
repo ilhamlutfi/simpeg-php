@@ -1,11 +1,25 @@
 <?php  
 
+session_start();
+
+// check login jika gagal lempar kembali ke login.php
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Anda harus login terlebih dahulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit;
+}
+
 $judul = 'Daftar Akun';
 
 include 'layout/header.php';
 
-// query tampil data akun
+// query tampil data akun untuk admin
 $akun = query("SELECT * FROM akun");
+
+// query tampil akun untuk operator
+$akun_operator = query("SELECT * FROM akun WHERE id_akun = $id_akun");
 
 // ketika tombol submit ditekan jalankan fungsi dibawah ini
 if (isset($_POST['tambah'])) {
@@ -59,7 +73,9 @@ if (isset($_POST['ubah'])) {
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <?php if ($role == 1) : ?>
                         <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalTambah"><i class="fas fa-plus"></i> Tambah</button>
+                        <?php endif; ?>
 
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -75,27 +91,53 @@ if (isset($_POST['ubah'])) {
 
                             <tbody>
                                 <?php $no = 1; ?>
-                                <?php foreach ($akun as $data) : ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $data['nama']; ?></td>
-                                        <td><?= $data['no_telepon']; ?></td>
-                                        <td>
-                                        	<?php if ($data['role'] == 1) : ?>
-                                        		Admin
-                                        	<?php else : ?>
-                                        		Operator
-                                        	<?php endif; ?>
-                                        </td>
-                                        <td>Ter-enkripsi</td>
-                                        <td width="15%" class="text-center">
-                                            <button class="btn btn-success btn-sm mb-1" data-toggle="modal" data-target="#modalUbah<?= $data['id_akun']; ?>"><i class="fas fa-edit"></i>
-                                                Ubah</button>
-                                            <a href="hapus-akun.php?id_akun=<?= $data['id_akun']; ?>" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Yakin Data Akun Akan Dihapus.?');"><i class="fas fa-trash-alt"></i>
-                                                Hapus</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                <?php if ($role == 1) : ?>
+                                    <!-- tampil jika login admin -->
+                                    <?php foreach ($akun as $data) : ?>
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $data['nama']; ?></td>
+                                            <td><?= $data['no_telepon']; ?></td>
+                                            <td>
+                                            	<?php if ($data['role'] == 1) : ?>
+                                            		Admin
+                                            	<?php else : ?>
+                                            		Operator
+                                            	<?php endif; ?>
+                                            </td>
+                                            <td>Ter-enkripsi</td>
+                                            <td width="15%" class="text-center">
+                                                <button class="btn btn-success btn-sm mb-1" data-toggle="modal" data-target="#modalUbah<?= $data['id_akun']; ?>"><i class="fas fa-edit"></i>
+                                                    Ubah</button>
+                                                <?php if ($data['id_akun'] != $id_akun) : ?>
+                                                <a href="hapus-akun.php?id_akun=<?= $data['id_akun']; ?>" class="btn btn-danger btn-sm mb-1" onclick="return confirm('Yakin Data Akun Akan Dihapus.?');"><i class="fas fa-trash-alt"></i>
+                                                    Hapus</a>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else : ?>
+                                    <!-- tampil jika login operator -->
+                                    <?php foreach ($akun_operator as $data) : ?>
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $data['nama']; ?></td>
+                                            <td><?= $data['no_telepon']; ?></td>
+                                            <td>
+                                                <?php if ($data['role'] == 1) : ?>
+                                                    Admin
+                                                <?php else : ?>
+                                                    Operator
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>Ter-enkripsi</td>
+                                            <td width="15%" class="text-center">
+                                                <button class="btn btn-success btn-sm mb-1" data-toggle="modal" data-target="#modalUbah<?= $data['id_akun']; ?>"><i class="fas fa-edit"></i>
+                                                    Ubah</button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

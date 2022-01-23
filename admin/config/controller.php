@@ -57,7 +57,7 @@ function ubah_bidang($post)
     $nama_bidang    = htmlspecialchars($post['nama_bidang']);
 
     // query ubah data
-    $query = "UPDATE bidang SET nama = '$nama_bidang' WHERE id_bidang = $id_bidang";
+    $query = "UPDATE bidang SET nama_bidang = '$nama_bidang' WHERE id_bidang = $id_bidang";
 
     // simpan query ke database
     mysqli_query($db, $query);
@@ -205,6 +205,7 @@ function tambah_akun($post)
     // ambil input user
     $nama       = htmlspecialchars($post['nama']);
     $no_telepon = htmlspecialchars($post['no_telepon']);
+    $password   = htmlspecialchars($post['password']);
     $role       = htmlspecialchars($post['role']);
 
     // enkripsi password ke database
@@ -241,6 +242,7 @@ function ubah_akun($post)
     // ambil input user
     $nama       = htmlspecialchars($post['nama']);
     $no_telepon = htmlspecialchars($post['no_telepon']);
+    $password   = htmlspecialchars($post['password']);
     $role       = htmlspecialchars($post['role']);
     $id_akun    = $post['id_akun'];
 
