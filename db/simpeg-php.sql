@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2022 at 11:22 AM
+-- Generation Time: Jan 28, 2022 at 02:25 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -40,7 +40,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `nama`, `no_telepon`, `password`, `role`) VALUES
-(1, 'Gunawan Saputra', '8023736418010', '$2y$10$v2W7Vigh9REV61ecitVkXOaPQuvqB8k6wgyyfB/ncIIioobVEW8S.', '2');
+(6, 'admin', '123123123', '$2y$10$mwGN03oeaOiStuHt5VjPOepkVDm6nk9lyI8hgCLicTTH3VoQF80ia', '1'),
+(7, 'operator', '12345', '$2y$10$0EQTIdXP86YHuvSSbVQbzeII3j/zpLQ0h51dRpGvpzHFqUVCPArC6', '2');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,8 @@ CREATE TABLE `bidang` (
 
 INSERT INTO `bidang` (`id_bidang`, `nama_bidang`, `tanggal`) VALUES
 (1, 'Teknologi Informasi', '2022-01-08 15:50:37'),
-(2, 'Humas', '2022-01-09 10:17:55');
+(2, 'Humas', '2022-01-09 10:17:55'),
+(10, 'SDM', '2022-01-23 10:38:29');
 
 -- --------------------------------------------------------
 
@@ -92,7 +94,8 @@ CREATE TABLE `pegawai` (
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_bidang`, `nip`, `nama`, `jk`, `alamat`, `email`, `no_telepon`, `golongan`, `gaji`, `status`, `tmk`, `foto`, `id_user`, `tanggal`) VALUES
 (4, 2, 123123213, 'Lutfi Ilham', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0812312312312', 'Kontrak', '1500000', 'Belum Menikah', '2021-12-01', '61e3e307c7d87.png', 0, '2022-01-16 11:02:13'),
-(6, 1, 1231231, 'Lutfi', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0823645464', 'CPNS', '650000', 'Belum Menikah', '2021-12-07', '61eb9e0300053.jpg', 0, '2022-01-22 13:02:43');
+(6, 1, 1231231, 'Lutfi', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'ilham.lutfyparker@gmail.com', '0823645464', 'CPNS', '650000', 'Belum Menikah', '2021-12-07', '61eb9e0300053.jpg', 0, '2022-01-22 13:02:43'),
+(7, 10, 1231, 'sad', 'Laki-Laki', 'Sekayu, Musi Banyuasin', 'efran@gmail.com', '123123', 'PHL', '850000', 'Menikah', '2021-12-01', '61ecd40b00064.jpg', 0, '2022-01-23 11:05:31');
 
 --
 -- Indexes for dumped tables
@@ -124,19 +127,19 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_akun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bidang`
 --
 ALTER TABLE `bidang`
-  MODIFY `id_bidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_bidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
